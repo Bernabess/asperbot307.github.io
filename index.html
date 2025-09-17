@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,6 +7,63 @@
   <title>Asper-Bot 307</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&family=Audiowide&display=swap" rel="stylesheet">
   <style>
+    .inicio2 {
+      display: flex;
+      justify-content: center;
+      padding: 60px 20px;
+      border-bottom: 1px solid #333;
+      background: #181818;
+    }
+    .inicio2-wrapper {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      max-width: 1100px;
+      width: 100%;
+    }
+    .inicio2-col {
+      flex: 1 1 0;
+      background: #23232b;
+      border-radius: 12px;
+      padding: 40px 32px;
+      color: #fff;
+      box-shadow: 0 4px 24px #0003;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+    }
+    .inicio2-col h2 {
+      font-size: 2rem;
+      margin-bottom: 18px;
+      font-weight: 900;
+      color: var(--color-primary);
+      font-family: 'Poppins', Arial, sans-serif;
+      text-align: center;
+      transition: color 0.2s;
+    }
+    .inicio2-col {
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .inicio2-col:hover {
+      transform: scale(1.06);
+      box-shadow: 0 8px 32px #0005;
+    }
+    .inicio2-col p {
+      font-size: 1.15rem;
+      font-family: 'Poppins', Arial, sans-serif;
+      color: #fff;
+    }
+    @media (max-width: 900px) {
+      .inicio2-wrapper {
+        flex-direction: column;
+        gap: 24px;
+      }
+      .inicio2-col {
+        padding: 28px 12px;
+        text-align: center;
+      }
+    }
     .inicio1-content {
       flex: 1 1 0;
       text-align: left;
@@ -414,6 +472,42 @@
 
 
 
+.carrusel {
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+  max-width: 900px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.imagenes {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+}
+
+.imagenes img {
+  width: 50%;
+  flex-shrink: 0;
+}
+
+.btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 18px;
+}
+.btn.prev { left: 10px; }
+.btn.next { right: 10px; }
+
+
+
 
 
     /* ===== FOOTER ===== */
@@ -487,14 +581,30 @@
 </div>
   
 
-    <section class="galeria">
-      <img src="https://picsum.photos/id/1015/400/300" alt="Imagen 1">
-      <img src="https://picsum.photos/id/1016/400/300" alt="Imagen 2">
-      <img src="https://picsum.photos/id/1018/400/300" alt="Imagen 3">
-      <img src="https://picsum.photos/id/1020/400/300" alt="Imagen 4">
-      <img src="https://picsum.photos/id/1024/400/300" alt="Imagen 5">
-    </section>
-  </main>
+
+<section class="inicio2">
+    <div class="inicio2-wrapper">
+      <div class="inicio2-col inicio2-problema">
+        <h2>El desafío de la interacción social</h2>
+        <p>Para millones de personas, acciones cotidianas como ir a un restaurante o realizar un trámite pueden ser abrumadoras. La dificultad para interpretar señales no verbales y la presión social crean barreras que limitan la participación plena en la sociedad.</p>
+      </div>
+      <div class="inicio2-col inicio2-solucion">
+        <h2>La solución de Asperbot</h2>
+        <p>Asperbot proporciona un espacio sin prejuicios. Al interactuar con un robot que no juzga ni muestra reacciones ambiguas, los usuarios pueden practicar sus habilidades de comunicación de manera consistente y a su propio ritmo, construyendo la confianza necesaria para el mundo real.</p>
+      </div>
+    </div>
+  </section>
+
+<div class="carrusel">
+  <div class="imagenes" id="imagenes">
+    <img src="png/foto1.jpeg" alt="Imagen 1">
+    <img src="png/foto2.jpeg" alt="Imagen 2">
+    <img src="png/foto3.jpeg" alt="Imagen 3">
+    <img src="png/foto4.jpeg" alt="Imagen 4">
+  </div>
+  <button class="btn prev" onclick="mover(-1)">❮</button>
+  <button class="btn next" onclick="mover(1)">❯</button>
+</div>
 
   <footer>
     &copy; 2025 Asper-Bot 307 — Todos los derechos reservados
@@ -576,6 +686,19 @@
       requestAnimationFrame(animateShadow);
     }
     animateShadow();
+
+
+
+    const imagenes = document.getElementById("imagenes");
+const total = imagenes.children.length;
+let index = 0;
+
+function mover(direccion) {
+  index += direccion;
+  if (index < 0) index = total - 1;
+  if (index >= total) index = 0;
+  imagenes.style.transform = `translateX(${-index * 100}%)`;
+}
 
   </script>
 </body>
